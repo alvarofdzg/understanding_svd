@@ -160,3 +160,6 @@ cython_debug/
 #.idea/
 
 .vscode/
+1_visualize_different_matrices/output_data/
+2_spectral_decomposition/output_data/
+3_singular_value_decomposition/output_data/
