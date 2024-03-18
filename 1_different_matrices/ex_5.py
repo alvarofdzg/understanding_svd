@@ -115,6 +115,6 @@ def main(conf:dict) -> None:
 if __name__ == '__main__':
     
     conf = {
-        'output_data_path': '1_visualize_different_matrices/output_data/ex_5'
+        'output_data_path': '1_different_matrices/output_data/ex_5'
     }
     main(conf=conf)

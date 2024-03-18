@@ -16,7 +16,7 @@ def main(paths:list) -> None:
 if __name__ == '__main__':
     
     paths = [
-        '1_visualize_different_matrices',
+        '1_different_matrices',
         '2_spectral_decomposition',
         '3_singular_value_decomposition'
     ]
