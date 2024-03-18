@@ -1,3 +1,6 @@
+'''
+This script shows how different matrices affect a plane in 2D.
+'''
 import os
 import sys
 import numpy as np
@@ -7,6 +10,7 @@ from utils import (
     plot_plane,
     prepare_flattened_2D_plane
 )
+
 
 def main(conf:dict) -> None:
     
@@ -29,12 +33,12 @@ def main(conf:dict) -> None:
     
     ##########
     # Identity matrix:
-    matrix_1 = np.array([
+    identity_matrix = np.array([
         [1, 0],
         [0, 1]
     ])
     # Calculating plane 1:
-    plane_1 = matrix_1 @ flattened_plane
+    plane_1 = identity_matrix @ flattened_plane
 
     # Plot plane 1:
     plane_path = os.path.join(
@@ -48,12 +52,12 @@ def main(conf:dict) -> None:
 
     ##########
     # Scalar matrix 1:
-    matrix_2 = np.array([
+    scalar_matrix_1 = np.array([
         [2, 0],
         [0, 2]
     ])
     # Calculating plane 2:
-    plane_2 = matrix_2 @ flattened_plane
+    plane_2 = scalar_matrix_1 @ flattened_plane
 
     # Plot plane 2:
     plane_path = os.path.join(
@@ -67,12 +71,12 @@ def main(conf:dict) -> None:
 
     ##########
     # Scalar matrix 2:
-    matrix_3 = np.array([
+    scalar_matrix_2 = np.array([
         [0.5,   0],
         [  0, 0.5]
     ])
     # Calculating plane 3:
-    plane_3 = matrix_3 @ flattened_plane
+    plane_3 = scalar_matrix_2 @ flattened_plane
 
     # Plot plane 3:
     plane_path = os.path.join(
@@ -86,12 +90,12 @@ def main(conf:dict) -> None:
 
     #########
     # Off-one matrix 1:
-    matrix_4 = np.array([
+    off_one_matrix_1 = np.array([
         [2, 0],
         [0, 1]
     ])
     # Calculating plane 4:
-    plane_4 = matrix_4 @ flattened_plane
+    plane_4 = off_one_matrix_1 @ flattened_plane
     
     # Plot plane 4:
     plane_path = os.path.join(
@@ -105,12 +109,13 @@ def main(conf:dict) -> None:
 
     #########
     # Off-one matrix 2:
-    matrix_5 = np.array([
+    off_one_matrix_2 = np.array([
         [1, 0],
         [0, 2]
     ])
     # Calculating plane 5:
-    plane_5 = matrix_5 @ flattened_plane
+    plane_5 = off_one_matrix_2 @ flattened_plane
+    
     # Plot plane 5:
     plane_path = os.path.join(
         conf['output_data_path'],
@@ -123,12 +128,12 @@ def main(conf:dict) -> None:
 
     #########
     # Reflection matrix 1:
-    matrix_6 = np.array([
+    reflection_matrix_1 = np.array([
         [-1, 0],
         [ 0, 1]
     ])
     # Calculating plane 6:
-    plane_6 = matrix_6 @ flattened_plane
+    plane_6 = reflection_matrix_1 @ flattened_plane
     
     # Plot plane 6:
     plane_path = os.path.join(
@@ -142,12 +147,12 @@ def main(conf:dict) -> None:
     
     #########
     # Reflection matrix 2:
-    matrix_7 = np.array([
+    reflection_matrix_2 = np.array([
         [1,  0],
         [0, -1]
     ])
     # Calculating plane 7:
-    plane_7 = matrix_7 @ flattened_plane
+    plane_7 = reflection_matrix_2 @ flattened_plane
     
     # Plot plane 7:
     plane_path = os.path.join(
@@ -161,12 +166,12 @@ def main(conf:dict) -> None:
 
     #########
     # Reflection matrix 3:
-    matrix_8 = np.array([
+    reflection_matrix_3 = np.array([
         [-1,  0],
         [ 0, -1]
     ])
     # Calculating plane 8:
-    plane_8 = matrix_8 @ flattened_plane
+    plane_8 = reflection_matrix_3 @ flattened_plane
 
     # Plot plane 8:
     plane_path = os.path.join(
@@ -180,17 +185,17 @@ def main(conf:dict) -> None:
 
     #########
     # Diagonal matrix:
-    matrix_9 = np.array([
+    diagonal_matrix = np.array([
         [-2.5,  0],
         [ 0, 0.6]
     ])
     # Calculating plane 9:
-    plane_9 = matrix_9 @ flattened_plane
+    plane_9 = diagonal_matrix @ flattened_plane
     
     # Plot plane 9:
     plane_path = os.path.join(
         conf['output_data_path'],
-        'ex_2__diagonal.png'
+        'ex_2__diagonal_matrix.png'
     )
     plot_plane(
         object_2D=plane_9,

@@ -1,3 +1,6 @@
+'''
+This script shows how a plane can get affected by a matrix.
+'''
 import os
 import sys
 import numpy as np

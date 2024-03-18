@@ -1,5 +1,5 @@
 '''
-In this script we work with the Orthogonal matrix.
+This script shows how different Orthogonal matrices affect a plane in 2D and a box in 3D.
 '''
 import os
 import sys
@@ -7,10 +7,10 @@ import numpy as np
 # Adding parent folder:
 sys.path.append(os.getcwd())
 from utils import (
+    plot_cube,
     plot_plane,
     prepare_flattened_2D_plane,
-    prepare_flattened_3D_plane,
-    plot_cube
+    prepare_flattened_3D_plane
 )
 
 
@@ -35,12 +35,12 @@ def main(conf:dict) -> None:
     
     ##########
     # Orthogonal matrix 1:
-    matrix_1 = np.array([
+    orthogonal_matrix_1 = np.array([
         [np.sqrt(2) / 2, np.sqrt(2) / 2],
         [-np.sqrt(2) / 2, np.sqrt(2) / 2]
     ])
     # Calculating plane 1:
-    plane_1 = matrix_1 @ flattened_plane
+    plane_1 = orthogonal_matrix_1 @ flattened_plane
     
     # Plotting plane 1:
     plane_path = os.path.join(
@@ -54,12 +54,12 @@ def main(conf:dict) -> None:
     
     ##########
     # Orthogonal matrix 2:
-    matrix_2 = np.array([
+    orthogonal_matrix_2 = np.array([
         [0,  1],
         [-1, 0]
     ])
     # Calculating plane 2:
-    plane_2 = matrix_2 @ flattened_plane
+    plane_2 = orthogonal_matrix_2 @ flattened_plane
     
     # Plotting plane 2:
     plane_path = os.path.join(
@@ -73,12 +73,12 @@ def main(conf:dict) -> None:
     
     ##########
     # Orthogonal matrix 3:
-    matrix_3 = np.array([
+    orthogonal_matrix_3 = np.array([
         [1, 0],
         [1, 1]
     ])
     # Calculating plane 3:
-    plane_3 = matrix_3 @ flattened_plane
+    plane_3 = orthogonal_matrix_3 @ flattened_plane
     
     # Plotting plane 3:
     plane_path = os.path.join(
@@ -106,13 +106,13 @@ def main(conf:dict) -> None:
 
     ##########
     # Orthogonal matrix 4:
-    matrix_4 = np.array([
+    orthogonal_matrix_4 = np.array([
         [1,              0,               0],
         [0,          1 / 2, -np.sqrt(3) / 2],
         [0, np.sqrt(3) / 2,           1 / 2]
     ])
     # Calculating box 1:
-    box_1 = matrix_4 @ flattened_box
+    box_1 = orthogonal_matrix_4 @ flattened_box
 
     # Plotting box 1:
     plane_path = os.path.join(
@@ -125,13 +125,13 @@ def main(conf:dict) -> None:
 
     ##########
     # Orthogonal matrix 5:
-    matrix_5 = np.array([
+    orthogonal_matrix_5 = np.array([
         [ np.sqrt(2) / 2, 0, np.sqrt(2) / 2],
         [              0, 1,              0],
         [-np.sqrt(2) / 2, 0, np.sqrt(2) / 2]
     ])
     # Calculating box 2:
-    box_2 = matrix_5 @ flattened_box
+    box_2 = orthogonal_matrix_5 @ flattened_box
     
     # Plotting box 2:
     plane_path = os.path.join(
@@ -143,19 +143,19 @@ def main(conf:dict) -> None:
         output_path=plane_path)
 
     ##########
-    # Shear matrix 7:
-    matrix_6 = np.array([
+    # Orthogonal matrix 6 & 7:
+    orthogonal_matrix_6 = np.array([
         [np.sqrt(2) / 2, -np.sqrt(2) / 2, 0],
         [np.sqrt(2) / 2,  np.sqrt(2) / 2, 0],
         [             0,               0, 1]
     ])
-    matrix_7 = np.array([
+    orthogonal_matrix_7 = np.array([
         [1,              0,               0],
         [0,          1 / 2, -np.sqrt(3) / 2],
         [0, np.sqrt(3) / 2,           1 / 2]
     ])
     # Calculating box 3:
-    box_3 = matrix_6 @ matrix_7 @ flattened_box
+    box_3 = orthogonal_matrix_6 @ orthogonal_matrix_7 @ flattened_box
 
     # Plotting box 3:
     plane_path = os.path.join(
@@ -167,7 +167,7 @@ def main(conf:dict) -> None:
         output_path=plane_path)
     
     # Calculating box 4:
-    box_4 = matrix_7 @ matrix_6 @ flattened_box
+    box_4 = orthogonal_matrix_7 @ orthogonal_matrix_6 @ flattened_box
 
     # Plotting box 4:
     plane_path = os.path.join(

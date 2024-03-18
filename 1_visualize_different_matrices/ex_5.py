@@ -1,5 +1,6 @@
 '''
-In this script we work with the inverse of a matrix.
+This script shows how the inverse of a matrix can return different shapes to their
+initial shape after being modified by the original matrix.
 '''
 import os
 import sys
@@ -7,10 +8,10 @@ import numpy as np
 # Adding parent folder:
 sys.path.append(os.getcwd())
 from utils import (
+    plot_cube,
     plot_plane,
     prepare_flattened_2D_plane,
-    prepare_flattened_3D_plane,
-    plot_cube
+    prepare_flattened_3D_plane
 )
 
 
@@ -52,7 +53,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
     
-    # Calculating original raw plane:
+    # Calculating original raw plane applying inverse of matrix 1:
     new_original_plane = np.linalg.inv(matrix_1) @ plane_1
     
     # Plotting new original plane:
@@ -98,7 +99,7 @@ def main(conf:dict) -> None:
         object_3D=box_1,
         output_path=plane_path)
     
-    # Calculating original box:
+    # Calculating original box  applying inverse of matrix 2:
     new_original_box = np.linalg.inv(matrix_2) @ box_1
     
     # Plotting new original box:
@@ -109,7 +110,6 @@ def main(conf:dict) -> None:
     plot_cube(
         object_3D=new_original_box,
         output_path=plane_path)
-
 
 
 if __name__ == '__main__':
