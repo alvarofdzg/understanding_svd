@@ -186,3 +186,28 @@ def plot_reference_frame(ax) -> plt.axes:
 
 
     return ax
+
+
+def plot_image_decomposition(
+    original_image:np.array,
+    U:np.array, 
+    S:np.array, 
+    Vt:np.array, 
+    output_path:str) -> None:
+
+    fig, ax = plt.subplots(5, 2, figsize=(8, 18))
+    
+    for idx_figure, r in enumerate([5, 10, 70, 100, 200]):
+        cat_approx = U[:, :r] @ S[0:r, :r] @ Vt[:r, :]
+        ax[idx_figure][0].imshow(cat_approx, cmap='gray')
+        ax[idx_figure][0].set_title("k = " + str(r))
+        ax[idx_figure, 0].axis('off')
+        ax[idx_figure][1].set_title("Original Image")
+        ax[idx_figure][1].imshow(original_image, cmap='gray')
+        ax[idx_figure, 1].axis('off')
+
+    fig.tight_layout()
+    
+    # Save figure:
+    plt.savefig(output_path)
+    plt.close()

@@ -1,5 +1,8 @@
 '''
-In this script we work with the Shear matrix.
+This script shows how to work with the Singular Value Decomposition.
+It applies the different sections of the decomposition (U, S & Vt) one by one to
+different shapes in 2D and 3D, so we can understand more clearly what each 
+operation is doing.
 '''
 import os
 import sys
@@ -7,12 +10,12 @@ import numpy as np
 # Adding parent folder:
 sys.path.append(os.getcwd())
 from utils import (
+    plot_cube,
     plot_plane,
+    plot_cube_2D,
     plot_plane_3D,
     prepare_flattened_2D_plane,
-    prepare_flattened_3D_plane,
-    plot_cube_2D,
-    plot_cube
+    prepare_flattened_3D_plane
 )
 
 
@@ -198,7 +201,7 @@ def main(conf:dict) -> None:
         output_path=plane_path)
 
     ##########
-    # Symmetric matrix 3:
+    # Matrix 3:
     matrix_3 = np.array([
         [3, 2,  2],
         [2, 3, -2]
@@ -273,9 +276,79 @@ def main(conf:dict) -> None:
         max_axis=70)
 
 
+    ##########
+    # Matrix 4:
+    matrix_4 = np.array([
+        [3,  2,  2],
+        [2,  3, -2],
+        [1, -1,  2]
+    ])
+    # Calculating box 1:
+    box_1 = matrix_4 @ flattened_box
+
+    # Plotting box 1:
+    plane_path = os.path.join(
+        conf['output_data_path'],
+        'matrix_4.png'
+    )
+    plot_cube(
+        object_3D=box_1,
+        output_path=plane_path)
+    
+    # Calculate te matrix decomposition of our symmetric matrix:
+    U, s, Vt = np.linalg.svd(matrix_4, full_matrices=True)
+    
+    # Building S:
+    S = np.zeros((matrix_4.shape[0], matrix_4.shape[1]))
+    S[:len(s), :len(s)] = np.diag(s)
+    
+    # Computing axis to represent the eigen values:
+    axis_eigen_vectors_3D = Vt * 30
+    
+    # Applying rotation with Vt:
+    box_2 = Vt @ flattened_box
+    
+    # Plotting box 2:
+    plane_path = os.path.join(
+        conf['output_data_path'],
+        'first_part_matrix_4.png'
+    )
+    plot_cube(
+        object_3D=box_2,
+        eigen_vectors=axis_eigen_vectors_3D,
+        output_path=plane_path
+    )
+    
+    # Applying scaling with S:
+    box_3 = S @ box_2
+    
+    # Plotting box 3:
+    plane_path = os.path.join(
+        conf['output_data_path'],
+        'second_part_matrix_4.png'
+    )
+    plot_cube(
+        object_3D=box_3,
+        eigen_vectors=axis_eigen_vectors_3D,
+        output_path=plane_path)
+    
+    # Applying rotation with U:
+    box_4 = U @ box_3
+    
+    # Plotting box 4:
+    plane_path = os.path.join(
+        conf['output_data_path'],
+        'third_part_matrix_4.png'
+    )
+    plot_cube(
+        object_3D=box_4,
+        eigen_vectors=axis_eigen_vectors_3D,
+        output_path=plane_path)
+
+
 if __name__ == '__main__':
     
     conf = {
-        'output_data_path': '3_singular_value_decomposition/output_data'
+        'output_data_path': '3_singular_value_decomposition/output_data/svd_examples'
     }
     main(conf=conf)

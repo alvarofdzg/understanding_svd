@@ -1,5 +1,6 @@
 '''
-In this script we show how some rectangular matrices work.
+This script shows how rectangular matrices work. 
+It focuses on showing the ability to erase or add dimensions to some data.
 '''
 import numpy as np
 
@@ -85,7 +86,6 @@ def main() -> None:
     print(matrix_4)
     print('And the result after using Dimension Adder is:')
     print(result_3)
-
 
 
 if __name__ == '__main__':
