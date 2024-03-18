@@ -1,5 +1,10 @@
 '''
-In this script we work with the Shear matrix.
+This script shows how to work with the Spectral Decomposition.
+It applies the different sections of the decomposition (Q, V & Qt) one by one to
+different shapes in 2D and 3D, so we can understand more clearly what each 
+operation is doing.
+We have to remember that this decomposition is only possible when we are working
+with symmetric matrices, that's why we only use them in this section.
 '''
 import os
 import sys
@@ -7,10 +12,10 @@ import numpy as np
 # Adding parent folder:
 sys.path.append(os.getcwd())
 from utils import (
+    plot_cube,
     plot_plane,
     prepare_flattened_2D_plane,
-    prepare_flattened_3D_plane,
-    plot_cube
+    prepare_flattened_3D_plane
 )
 
 
@@ -58,7 +63,7 @@ def main(conf:dict) -> None:
     # Computing axis to represent the eigen values:
     axis_eigen_vectors = eigenvectors.T * 10
     
-    # Applying rotation with qt:
+    # Applying rotation with Qt:
     plane_2 = eigenvectors.T @ flattened_plane
     
     # Plotting plane 2:
@@ -72,7 +77,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
     
-    # Applying scaling with v:
+    # Applying scaling with V:
     plane_3 = np.diag(eigenvalues) @ plane_2
     
     # Plotting plane 3:
@@ -86,7 +91,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
 
-    # Applying rotation with q:
+    # Applying rotation with Q:
     plane_4 = eigenvectors @ plane_3
     
     # Plotting plane 4:
@@ -126,7 +131,7 @@ def main(conf:dict) -> None:
     # Computing axis to represent the eigen values:
     axis_eigen_vectors = eigenvectors.T * 10
 
-    # Applying rotation with qt:
+    # Applying rotation with Qt:
     plane_2 = eigenvectors.T @ flattened_plane
     
     # Plotting plane 2:
@@ -140,7 +145,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
     
-    # Applying scaling with v:
+    # Applying scaling with V:
     plane_3 = np.diag(eigenvalues) @ plane_2
     
     # Plotting plane 3:
@@ -154,7 +159,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
 
-    # Applying rotation with q:
+    # Applying rotation with Q:
     plane_4 = eigenvectors @ plane_3
     
     # Plotting plane 4:
@@ -208,7 +213,7 @@ def main(conf:dict) -> None:
     # Computing axis to represent the eigen values:
     axis_eigen_vectors = eigenvectors.T * 30
     
-    # Applying rotation with qt:
+    # Applying rotation with Qt:
     box_2 = eigenvectors.T @ flattened_box
     
     # Plotting box 2:
@@ -222,7 +227,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
     
-    # Applying scaling with v:
+    # Applying scaling with V:
     box_3 = np.diag(eigenvalues) @ box_2
     
     # Plotting box 3:
@@ -236,7 +241,7 @@ def main(conf:dict) -> None:
         output_path=plane_path
     )
 
-    # Applying rotation with q:
+    # Applying rotation with Q:
     box_4 = eigenvectors @ box_3
     
     # Plotting box 4:
